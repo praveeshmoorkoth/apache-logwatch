@@ -6,7 +6,7 @@
 # Declare Variables
 THRESHOLD=100 # Integer value
 EMAIL_LIST="praveeshgm@gmail.com,praveeshtestgm@gmail.com" # comma seperate list of email IDs
-INTERVAL=5 #Duration of log watch in hours
+INTERVAL=1 #Duration of log watch in hours
 
 # EMAIL Server configurations, Update the details
 SMTP_S="smtp=smtps://smtp.gmail.com:465"
