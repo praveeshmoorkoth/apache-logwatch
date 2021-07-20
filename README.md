@@ -10,7 +10,7 @@ Notes:
 1. mailx utility (yum install mailx)
 2. mailrc configuration file 
 
-# cat ~/.mailrc
+$ cat ~/.mailrc
 set smtp-use-starttls
 set nss-config-dir=/etc/pki/nssdb/
 set ssl-verify=ignore
@@ -25,5 +25,5 @@ set from="No-Reply <no-reply@moxtra.com>"
 1. Use the following sed commands to update the date/timestamp on the log entries for testing purpose
 2. Email server configurations can be updated in the script itself.
 
-# sed -i 's/20\/Jul\/2021:09:/20\/Jul\/2021:02:/g' apache_access.log
-# sed -i 's/.png HTTP\/1.1\" 200/.png HTTP\/1.1\" 400/g' apache_access.log
+$ sed -i 's/20\/Jul\/2021:09:/20\/Jul\/2021:02:/g' apache_access.log
+$ sed -i 's/.png HTTP\/1.1\" 200/.png HTTP\/1.1\" 400/g' apache_access.log
