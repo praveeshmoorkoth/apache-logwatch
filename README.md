@@ -27,9 +27,26 @@ set from="No-Reply <no-reply@moxtra.com>"
 **Notes:**
 
 1. Use the following sed commands to update the date/timestamp on the log entries for testing purpose
-2. Email server configurations can be updated in the script itself.
 
 ```
 $ sed -i 's/20\/Jul\/2021:09:/20\/Jul\/2021:02:/g' apache_access.log
 $ sed -i 's/.png HTTP\/1.1\" 200/.png HTTP\/1.1\" 400/g' apache_access.log
 ```
+
+2. Email server related configurations can be updated in the script itself.
+
+```
+# EMAIL Server configurations
+SMTP_S="smtp=smtps://smtp.gmail.com:465"
+USER="praveeshtestgm@gmail.com"
+PASSWORD="xxxxxxxxxxx"
+```
+3. Some of the configuration items are avaiable in the top section of the scripts
+
+```
+# Declare Variables
+THRESHOLD=100 # Integer value
+EMAIL_LIST="praveeshgm@gmail.com,praveeshtestgm@gmail.com" # comma seperate list of email IDs
+INTERVAL=5 #Duration of log watch in hours
+```
+
