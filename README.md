@@ -33,13 +33,13 @@ $ sed -i 's/20\/Jul\/2021:09:/20\/Jul\/2021:02:/g' apache_access.log
 $ sed -i 's/.png HTTP\/1.1\" 200/.png HTTP\/1.1\" 400/g' apache_access.log
 ```
 
-2. Email server related configurations can be updated in the script itself.
+2. Email server related configurations can be updated in the script itself. However recomend to place in respecive user's .mailrc file as simple way to secure. 
 
 ```
 # EMAIL Server configurations
 SMTP_S="smtp=smtps://smtp.gmail.com:465"
-USER="praveeshtestgm@gmail.com"
-PASSWORD="xxxxxxxxxxx"
+#USER="praveeshtestgm@gmail.com"
+#PASSWORD="xxxxxxxxxxx"
 ```
 3. Some of the configuration items are avaiable in the top section of the scripts
 
