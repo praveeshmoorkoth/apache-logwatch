@@ -47,6 +47,5 @@ PASSWORD="xxxxxxxxxxx"
 # Declare Variables
 THRESHOLD=100 # Integer value
 EMAIL_LIST="praveeshgm@gmail.com,praveeshtestgm@gmail.com" # comma seperate list of email IDs
-INTERVAL=5 #Duration of log watch in hours
 ```
 
