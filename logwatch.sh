@@ -8,10 +8,10 @@ THRESHOLD=100 # Integer value
 EMAIL_LIST="praveeshgm@gmail.com,praveeshtestgm@gmail.com" # comma seperate list of email IDs
 INTERVAL=1 #Duration of log watch in hours
 
-# EMAIL Server configurations, Update the details
+# EMAIL Server configurations, Update the details if necessary 
 SMTP_S="smtp=smtps://smtp.gmail.com:465"
-USER="praveeshtestgm@gmail.com"
-PASSWORD="xxxxxxxxxxx"
+#USER="praveeshtestgm@gmail.com"
+#PASSWORD="xxxxxxxxxxx"
 
 # function usage
 usage() 
@@ -39,7 +39,7 @@ log_watch()
 notify()
 {
         body="Total number of 4xx and 5xx response code for last 1hour is exceeded the default threshold($THRESHOLD).\n\nTotal No.of 4xx errors: $fourx_count\n Total No.of 5xx errors: $fivex_count\n\nPlease take necessary actions and do not reply to this email"
-        echo -e $body | mailx -v -s "Critical Notification of Apache Access Logs" -S $SMTP_S -S smtp-auth=login -S smtp-auth-user=$USER -S smtp-auth-password=$PASSWORD -S from="No-Reply <no-reply@moxtra.com>" $EMAIL_LIST
+       echo -e $body | mailx -v -s "Critical Notification of Apache Access Logs" -S $SMTP_S -S smtp-auth=login -S from="No-Reply <no-reply@moxtra.com>" $EMAIL_LIST
 }
 
 # Main
