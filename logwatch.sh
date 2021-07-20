@@ -6,13 +6,12 @@
 # Declare Variables
 THRESHOLD=100 # Integer value
 EMAIL_LIST="praveeshgm@gmail.com,praveeshtestgm@gmail.com" # comma seperate list of email IDs
-INTERVAL=1 #Duration of log watch in hours
+INTERVAL=5 #Duration of log watch in hours
 
-# EMAIL Server configurations
+# EMAIL Server configurations, Update the details
 SMTP_S="smtp=smtps://smtp.gmail.com:465"
 USER="praveeshtestgm@gmail.com"
-PASSWORD="xxxxxxxxxxxxxxxxx"
-EMAIL_FROM=""No-Reply <no-reply@moxtra.com>""
+PASSWORD="xxxxxxxxxxx"
 
 # function usage
 usage() 
@@ -26,22 +25,21 @@ usage()
 # function watch_log
 log_watch()
 {
-	from_h=`date --date="$INTERVAL hours ago" '+%H:'`
-   	from_d=`date --date="$INTERVAL hours ago" '+%d/%b/%Y:'`
-	fourx_count=`grep -e $from_d$from_h $LOG_FILE | grep "HTTP/1.1\" 400" | wc -l`
-	fivex_count=`grep -e $from_d$from_h $LOG_FILE | grep "HTTP/1.1\" 500" | wc -l`
-	t_error_count=`expr $fourx_count + $fivex_count`
-	echo "Total Number of errors: $t_error_count"
-	if [ $t_error_count -ge $THRESHOLD ]; then
-		notify
-	fi
+        from_h=`date --date="$INTERVAL hours ago" '+%H:'`
+        from_d=`date --date="$INTERVAL hours ago" '+%d/%b/%Y:'`
+        fourx_count=`grep -e $from_d$from_h $LOG_FILE | grep "HTTP/1.1\" 4[0-9][0-9]" | wc -l`
+        fivex_count=`grep -e $from_d$from_h $LOG_FILE | grep "HTTP/1.1\" 5[0-9][0-9]" | wc -l`
+        t_error_count=`expr $fourx_count + $fivex_count`
+        if [ $t_error_count -ge $THRESHOLD ]; then
+                notify
+        fi
 }
 
 # function for mail notification
 notify()
 {
-	body="Total number of 400 and 500 response code for last 1hour is exceeded the default threshold(100).Please take necessary actions and do not reply to this email"
-        echo $body | mailx -v -s "Critical Notification of Apache Access Logs" -S $SMTP_S -S smtp-auth=login -S smtp-auth-user=$USER -S smtp-auth-password=$PASSWORD -S from=$EMAIL_FROM $EMAIL_LIST
+        body="Total number of 4xx and 5xx response code for last 1hour is exceeded the default threshold($THRESHOLD).\n\nTotal No.of 4xx errors: $fourx_count\n Total No.of 5xx errors: $fivex_count\n\nPlease take necessary actions and do not reply to this email"
+        echo -e $body | mailx -v -s "Critical Notification of Apache Access Logs" -S $SMTP_S -S smtp-auth=login -S smtp-auth-user=$USER -S smtp-auth-password=$PASSWORD -S from="No-Reply <no-reply@moxtra.com>" $EMAIL_LIST
 }
 
 # Main
@@ -51,6 +49,6 @@ notify()
         elif ! [ -f "$1" ]; then
                 printf "\nERROR: Apache log file does not exists"
                 usage
-	fi
+        fi
         LOG_FILE=$1
-	log_watch
+        log_watch
