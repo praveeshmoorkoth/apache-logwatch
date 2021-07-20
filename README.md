@@ -2,6 +2,7 @@
 
 This script scan a given apache access log file for the number of HTTP 4xx and 5xx response statuses. If the cumulative number of errors exceeds 100, it alos sent an email alert to configured mail list. 
 
+```
 **Usage:  sh logwatch.sh <apache_log_file>**
 Notes:
         param1 : Full path of the apache log file
@@ -9,6 +10,7 @@ Notes:
 **Prerequisite :**
 1. mailx utility (yum install mailx)
 2. mailrc configuration file 
+```
 
 ```
 $ cat ~/.mailrc
